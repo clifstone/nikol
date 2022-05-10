@@ -1,0 +1,40 @@
+.thumb-wrapper {
+    position: relative;
+}
+
+picture {
+    display: inline-block;
+}
+
+.thumb {
+    position: relative;
+    line-height: 0;
+    >.wrapper {
+        @include absoStretch;
+        overflow: hidden;
+    }
+    img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover;
+        .supergallery-overlay & {
+            max-height: 100vh;
+            object-fit: contain;
+        }
+    }
+    &.gallery-thumb {
+        width: 100%;
+        height: 100vh;
+        >.wrapper {
+            display: flex;
+        }
+    }
+    &.has-sizer {
+        &:before {
+            content: '';
+            width: 100%;
+            display: inline-block;
+            padding-bottom: var(--thAs);
+        }
+    }
+}

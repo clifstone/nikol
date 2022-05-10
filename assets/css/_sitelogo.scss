@@ -1,0 +1,9 @@
+.site-logo {
+    width: 100%;
+    max-width: 14rem;
+    max-height: var(--shh);
+    >a {
+        width: 100%;
+        display: inline-block;
+    }
+}

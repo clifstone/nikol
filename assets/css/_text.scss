@@ -1,0 +1,41 @@
+body {
+    font-family: var(--defaultfont);
+    font-size: var(--defaultfontsize);
+    font-weight: var(--defaultfontweight);
+    line-height: var(--defaultlineheight);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: var(--headingfontweight);
+}
+
+p {
+    .the-content & {
+        margin: 0 0 2rem 0;
+        &:last-child {
+            margin: 0;
+        }
+    }
+}
+
+a {
+    p & {
+        .the-content & {
+            font-weight: 600;
+            background: linear-gradient(to right, rgba($mdPink, 1), rgba($mdPink, 1)), linear-gradient(to right, rgba($dkPink, 1), rgba($dkPink, 1));
+            background-size: 100% 4px, 0 4px;
+            background-position: 100% 100%, 0 100%;
+            background-repeat: no-repeat;
+            transition: background-size 0.25s ease-in-out;
+            &:hover,
+            &:focus {
+                background-size: 0 4px, 100% 4px;
+            }
+        }
+    }
+}

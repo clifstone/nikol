@@ -1,0 +1,21 @@
+body {
+    opacity: 1 !important;
+    // &.showmen {
+    //     overflow: hidden;
+    // }
+}
+
+.site-wrapper {
+    min-height: 100vh;
+    background-color: white;
+    filter: blur(0);
+    transition: transform 0.5s cubic-bezier(.33, 0, 0.4, 1), filter 0.5s cubic-bezier(.33, 0, 0.4, 1);
+    .showgal & {
+        transform: scale(0.75);
+        filter: blur(1rem);
+    }
+}
+
+.grecaptcha-badge {
+    transform: scale(0);
+}

@@ -1,0 +1,73 @@
+* {
+    font-family: inherit;
+    color: inherit;
+    box-sizing: border-box;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    &:before,
+    &:after {
+        box-sizing: border-box;
+    }
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smooth: always;
+}
+
+body {
+    position: relative;
+}
+
+img,
+svg,
+picture {
+    width: 100%;
+    height: auto;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    background: transparent;
+    cursor: pointer;
+}
+
+input,
+textarea {
+    width: 100%;
+}
+
+input {
+    &[type="submit"],
+    &[type="checkbox"] {
+        width: auto;
+    }
+}
+
+.grid {
+    display: grid;
+}
+
+.flex {
+    display: flex;
+}
+
+.offscreen {
+    position: absolute;
+    left: -100vw;
+}

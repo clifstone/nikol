@@ -1,0 +1,13 @@
+.site-footer {
+    color: white;
+    position: sticky;
+    top: 100vh;
+    background-color: $white;
+    background-image: linear-gradient(0deg, rgba($ltPink, 1), rgba($exltPink, 1));
+    box-shadow: 0 0 1px rgba($dkPink, 1);
+    padding: 2rem;
+    >.wrapper {
+        justify-content: center;
+        align-content: center;
+    }
+}

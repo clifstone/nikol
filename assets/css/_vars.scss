@@ -1,0 +1,43 @@
+$tab:"(min-width:768px)";
+$des:"(min-width:1024px)";
+$des2:"(min-width:1366px)";
+$des3:"(min-width:1920px)";
+//
+//
+//COLORS
+$white:#fef8fb;
+$black:#050505;
+$gray:#505050;
+$mdgray:#999999;
+$ltgray:#CCCCCC;
+$exltPink:#ffcae5;
+$ltPink:#ffaed7;
+$mdPink:#ff77bc;
+$dkPink:#ff0081;
+$exdkPink:#7F003F;
+//
+//
+//
+:root {
+    --defaultfont: 'Yanone Kaffeesatz', sans-serif;
+    --defaultfontsize: 1.125rem;
+    --defaultfontweight: 300;
+    --defaultlineheight: 1.7;
+    --headingfontweight: 400;
+    --shh: 4.125rem;
+    --headerbtnsize: 3.125rem;
+    --headerbtniconsize: 1.25rem;
+    --headerbtncolor: #{$white};
+    --menbtnstrokewidth: 2px;
+    --socbtncolor: #{$white};
+    --thAs: 100%;
+    --maxw: 64rem;
+}
+
+@mixin absoStretch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}

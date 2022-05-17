@@ -11,6 +11,9 @@
             $galItem = $doc.querySelectorAll('.gallery-item'),
             $thumb = $doc.querySelectorAll('.thumb'),
             $menItems = $doc.querySelectorAll('.main_menu>.menu-item>a'),
+            $totop = $doc.querySelector('.totop'),
+            winW = $win.innerWidth,
+            winH = $win.innerHeight,
             scrtop,
             lastScrollTop;
 
@@ -40,19 +43,31 @@
             }
         }
 
+        $totop.addEventListener("click", () => {
+            $docbody.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
         const upordown = () => {
             scrtop = $docbody.scrollTop;
-            if (scrtop > lastScrollTop) {
+            if (scrtop > lastScrollTop && scrtop > 0) {
                 $docbody.classList.add('goingdown');
                 $docbody.classList.remove('showsoc');
-            } else if (scrtop < lastScrollTop || scrtop === 0) {
+            } else if (scrtop < lastScrollTop && scrtop > 0) {
                 $docbody.classList.remove('goingdown');
+                $docbody.classList.add('goingup');
+            } else if (scrtop === 0) {
+                $docbody.classList.remove('goingdown');
+                $docbody.classList.remove('goingup');
             }
             lastScrollTop = scrtop;
         }
 
         const checkSizes = () => {
             winW = $win.innerWidth;
+            winH = $win.innerHeight;
             console.log(winW);
         }
 
@@ -61,19 +76,21 @@
             let whichGal = $doc.querySelector('#supergallery-overlay-' + mcID + ''),
                 theGal = $doc.querySelector('#carousel-' + mcID + ''),
                 $galCloseBtn = $doc.querySelector('.controlbtn.closebtn'),
-                whichSlide = new Number(mcInd) + 1;
+                whichSlide = new Number(mcInd);
 
             whichGal.classList.add('active');
             $docbody.classList.add('showgal');
-            theGal.index = whichSlide;
-            theGal.translateSlide(whichSlide);
+
+            const glider = new Glide(theGal, {
+                type: 'carousel',
+                startAt: whichSlide,
+                perView: 1
+            }).mount();
 
             $galCloseBtn.addEventListener('click', () => {
                 whichGal.classList.remove('active');
-                theGal.index = 0;
-                theGal.resetSlide(0);
-                theGal.translateSlide(0);
                 $docbody.classList.remove('showgal');
+                glider.destroy();
             });
         }
 

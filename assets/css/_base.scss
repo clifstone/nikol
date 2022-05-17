@@ -8,6 +8,7 @@ body {
 .site-wrapper {
     min-height: 100vh;
     background-color: white;
+    position: relative;
     filter: blur(0);
     transition: transform 0.5s cubic-bezier(.33, 0, 0.4, 1), filter 0.5s cubic-bezier(.33, 0, 0.4, 1);
     .showgal & {

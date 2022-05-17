@@ -19,18 +19,20 @@ function supergallery_func( $atts ) {
         'listlabel' => '',
         'ctatext' => '',
         'overlayctatxt' => '',
-        'nocontrols' => false
+        'nocontrols' => null
     ), $atts));
 
     $mcRand = rand( 0 , 999999 );
     $x = 0;
 
-    ($nocontrols) ? ( $controls = '' ) : ( $controls = '<div class="own-carousel__control supergallery-overlay-controls"><button id="carousel_prev-'.$mcRand.'" class="control__prev controlbtn prev"><div class="wrapper"><i class="i-chevron-thin-left"></i></div></button><button id="carousel_next-'.$mcRand.'" class="control__next controlbtn next"><div class="wrapper"><i class="i-chevron-thin-right"></i></div></button></div><button class="controlbtn closebtn"><div class="wrapper"><i class="i-close"></i></div></button>' );
+    ($nocontrols) ? ( $controls = '' ) : ( $controls = '<div class="supergallery-overlay-controls" data-glide-el="controls"><button id="carousel_prev-'.$mcRand.'" class="controlbtn prev" data-glide-dir="<"><div class="wrapper"><i class="i-chevron-thin-left"></i></div></button><button id="carousel_next-'.$mcRand.'" class="controlbtn next" data-glide-dir=">"><div class="wrapper"><i class="i-chevron-thin-right"></i></div></button></div>' );
 
     $wrapperstart = '<div class="supergallery" data-id="'.$mcRand.'"><div class="wrapper">';
     $wrapperend = '</div></div>';
-    $overlaystart = '<div id="supergallery-overlay-'.$mcRand.'" class="supergallery-overlay" data-id="'.$mcRand.'"><div class="wrapper"><div id="carousel-'.$mcRand.'" class="own-carousel__container" style="--width:100%"><div class="own-carousel__outer"><div class="own-carousel">';
-    $overlayend = '</div></div></div></div>'.$controls.'</div>';
+    $carouselcontainersstart = '<div id="carousel-'.$mcRand.'" class="glide" style="--width:100%"><div class="glide__track" data-glide-el="track"><div class="glide__slides">';
+    $carouselcontainersend = '</div>'.$controls.'</div></div>';
+    $overlaystart = '<div id="supergallery-overlay-'.$mcRand.'" class="supergallery-overlay" data-id="'.$mcRand.'"><div class="wrapper">'.$carouselcontainersstart.'';
+    $overlayend = ''.$carouselcontainersend.'</div><button class="controlbtn closebtn"><div class="wrapper"><i class="i-close"></i></div></button></div>';
 
     $args = array(
         'posts_per_page' => $howmany,
@@ -63,7 +65,11 @@ function supergallery_func( $atts ) {
             $gallerythumb = '
             <figure class="thumb gallery-thumb">
                 <div class="wrapper">
-                    '.$thepicture.'
+                    <picture>
+                        <source media="(min-width: 1920px)" srcset="'.$mcThumb_exexlarge[0].'">
+                        <source media="(min-width: 1366px)" srcset="'.$mcThumb_exlarge[0].'">
+                        <img src="'.$mcThumb_medium[0].'" alt="'.$thmbalt.'" loading="lazy">
+                    </picture>
                 </div>
             </figure>
             ';
@@ -87,7 +93,7 @@ function supergallery_func( $atts ) {
             ';
 
             $fullgalleryimage .= '
-            <div class="own-carousel__item">
+            <div class="glide__slide">
                 <div class="overlay-item '.$format.'">
                     <div class="wrapper">
                         '.$gallerythumb.'
@@ -110,33 +116,7 @@ function supergallery_func( $atts ) {
 
     add_action( 'wp_footer', function() use ($overlaystart, $fullgalleryimage, $overlayend, $mcRand) {
         echo $overlaystart.$fullgalleryimage.$overlayend;
-        echo '
-        <script>
-            window.addEventListener("load", () => {
 
-                let theCarousel = document.querySelector("#carousel-'.$mcRand.'"),
-                    carouselPrevBtn = document.querySelector("#carousel_prev-'.$mcRand.'"),
-                    carouselNextBtn = document.querySelector("#carousel_next-'.$mcRand.'");
-
-                theCarousel.ownCarousel({
-                    itemPerRow:1, 
-                    itemWidth:100,
-                    loop:true
-                });
-
-                responsive();
-
-                carouselPrevBtn.addEventListener("click", () => {
-                    theCarousel.moveSlide(-1);
-                });
-                carouselNextBtn.addEventListener("click", () => {
-                    theCarousel.moveSlide(1);
-                    console.log(theCarousel.index);
-                });
-                
-            });
-        </script>
-        ';
 
     }, 10001);
 

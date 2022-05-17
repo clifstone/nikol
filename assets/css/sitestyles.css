@@ -91,6 +91,7 @@ body {
 .site-wrapper {
   min-height: 100vh;
   background-color: white;
+  position: relative;
   filter: blur(0);
   transition: transform 0.5s cubic-bezier(0.33, 0, 0.4, 1), filter 0.5s cubic-bezier(0.33, 0, 0.4, 1);
 }
@@ -858,7 +859,7 @@ picture {
     flex: 0 0 33.33333%;
   }
 }
-@media (min-width:1366px) {
+@media (min-width:1920px) {
   .appearance {
     flex: 0 0 25%;
   }
@@ -942,4 +943,62 @@ picture {
 .wpcf7 form.payment-required .wpcf7-response-output {
   border: 0px none;
   background-color: #ff0081;
+}
+
+.totop {
+  position: fixed;
+  bottom: 0;
+  right: 0.25rem;
+  z-index: 1;
+  padding: 0 0 0 0;
+  transform: translateY(100px);
+  transition: transform 0.25s ease-out;
+}
+.goingdown .totop, .goingup .totop {
+  transform: translateY(0);
+}
+.totop button {
+  background-color: #fef8fb;
+  background-image: linear-gradient(45deg, #ffaed7, rgba(255, 0, 129, 0.5));
+  border-radius: 999px 999px 0 0;
+  padding: 0.25rem 0.25rem 1rem 0.25rem;
+  box-shadow: 0 0 8px #7f003f;
+}
+.totop .wrapper {
+  background-color: rgba(254, 248, 251, 0.35);
+  background-image: linear-gradient(-45deg, rgba(5, 5, 5, 0.1), rgba(254, 248, 251, 0.1));
+  box-shadow: 1px 1px 2px rgba(5, 5, 5, 0.25), -1px -1px 2px rgba(254, 248, 251, 0.25);
+  border-radius: 999px;
+  width: 44px;
+  height: 44px;
+  position: relative;
+  transition: background-color 0.25s ease-in-out;
+}
+.totop i {
+  color: #7f003f;
+  background-color: rgba(254, 248, 251, 0.8);
+  box-shadow: 1px 1px 2px rgba(5, 5, 5, 0.25), -1px -1px 2px rgba(254, 248, 251, 0.25);
+  text-shadow: 1px 1px 2px rgba(5, 5, 5, 0.25);
+  border-radius: 999px;
+  font-size: 1.125rem;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.7;
+  transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
+}
+@media (min-width:1024px) {
+  .totop {
+    right: 2rem;
+  }
+  .totop:hover .wrapper {
+    background-color: rgba(254, 248, 251, 0.8);
+  }
+  .totop:hover i {
+    color: #fef8fb;
+    background-color: rgba(255, 174, 215, 0.8);
+  }
 }/*# sourceMappingURL=sitestyles.css.map */

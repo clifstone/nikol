@@ -32,7 +32,7 @@ function supergallery_func( $atts ) {
     $carouselcontainersstart = '<div id="carousel-'.$mcRand.'" class="glide" style="--width:100%"><div class="glide__track" data-glide-el="track"><div class="glide__slides">';
     $carouselcontainersend = '</div>'.$controls.'</div></div>';
     $overlaystart = '<div id="supergallery-overlay-'.$mcRand.'" class="supergallery-overlay" data-id="'.$mcRand.'"><div class="wrapper">'.$carouselcontainersstart.'';
-    $overlayend = ''.$carouselcontainersend.'</div><button class="controlbtn closebtn"><div class="wrapper"><i class="i-close"></i></div></button></div>';
+    $overlayend = ''.$carouselcontainersend.'</div><button class="supergallery-closebtn"><div class="wrapper"><i class="i-close"></i></div></button></div>';
 
     $args = array(
         'posts_per_page' => $howmany,

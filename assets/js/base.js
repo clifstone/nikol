@@ -43,12 +43,12 @@
             }
         }
 
-        $totop.addEventListener("click", () => {
+        const smoothscroll = (arg) => {
             $docbody.scrollTo({
-                top: 0,
+                top: arg,
                 behavior: "smooth"
             });
-        });
+        }
 
         const upordown = () => {
             scrtop = $docbody.scrollTop;
@@ -75,7 +75,7 @@
 
             let whichGal = $doc.querySelector('#supergallery-overlay-' + mcID + ''),
                 theGal = $doc.querySelector('#carousel-' + mcID + ''),
-                $galCloseBtn = $doc.querySelector('.controlbtn.closebtn'),
+                $galCloseBtn = $doc.querySelector('.supergallery-closebtn'),
                 whichSlide = new Number(mcInd);
 
             whichGal.classList.add('active');
@@ -98,10 +98,20 @@
             galItem.addEventListener('click', (e) => {
                 let galID = e.currentTarget.getAttribute('data-id'),
                     galSlide = e.currentTarget.getAttribute('data-num');
-
                 launchGallery(galID, galSlide);
             });
         });
+
+        $menItems.forEach(menItem => {
+            menItem.addEventListener('click', (e) => {
+                e.preventDefault();
+                let el = e.target.getAttribute('href'),
+                    elem = document.querySelector(el).offsetTop;
+                smoothscroll(elem);
+            });
+        });
+
+        $totop.addEventListener('click', smoothscroll.bind(0), false);
 
         $thumb.forEach(thumb => {
             thumb.addEventListener('contextmenu', (e) => { e.preventDefault(); });

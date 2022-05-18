@@ -1,17 +1,14 @@
-@mixin controlscolor {
-    background-color: rgba($white, 0.35);
-    background-image: linear-gradient(-45deg, rgba($black, 0.1), rgba($white, 0.1));
-}
-
 .supergallery {
     >.wrapper {
         column-count: 2;
-        column-gap: 1rem;
-        padding: 1rem;
+        column-gap: 0.25rem;
+        padding: 0.25rem;
         @media #{$des} {
             column-count: 3;
+            column-gap: 1rem;
+            padding: 1rem;
         }
-        @media #{$des} {
+        @media #{$des2} {
             column-count: 4;
         }
     }
@@ -20,9 +17,12 @@
 .gallery-item {
     color: white;
     display: block;
-    margin: 0 0 1rem;
+    margin: 0 0 0.25rem;
     line-height: 0;
     cursor: ne-resize;
+    @media #{$des} {
+        margin: 0 0 1rem;
+    }
     >.wrapper {
         display: inline-block;
         position: relative;
@@ -90,44 +90,98 @@
         height: 100vh;
     }
     .item-body {
-        line-height: 1;
+        width: 100%;
         position: absolute;
         top: 0;
-        padding: 0.5rem 0 0 0;
+        padding: 0 36px 0 0.5rem;
+        background: linear-gradient(to bottom, rgba(black, 0.35) 0%, rgba(black, 0) 100%);
+        @media #{$tab} {
+            padding: 0 36px 0 1.5rem;
+        }
         >.wrapper {
-            // @include controlscolor;
-            // padding: 0.25rem 0.25rem 0.25rem 0;
-            // border-radius: 0 999px 999px 0;
             display: flex;
             align-items: center;
+            height: 36px;
+        }
+        h3 {
+            width: 100%;
+            margin: 0 0.5rem 0 0;
+        }
+        h3,
+        .cta {
+            font-size: 1rem;
+        }
+        .cta {
+            text-transform: uppercase;
+            white-space: nowrap;
+            border-left: 1px solid rgba($white, 0.25);
+            padding: 0 0.5rem;
+            >a {
+                @include flexcenter;
+                gap: 0.25rem;
+                >span {
+                    color: $white;
+                    background: linear-gradient(to right, rgba($ltPink, 1), rgba($ltPink, 1)), linear-gradient(to right, rgba($dkPink, 1), rgba($dkPink, 1));
+                    background-size: 100% 2px, 0 2px;
+                    background-position: 100% 100%, 0 100%;
+                    background-repeat: no-repeat;
+                    transition: color 0.25s ease-in-out, background-size 0.25s ease-in-out;
+                }
+            }
+            i,
+            i:before {
+                border-radius: 999px;
+                @include flexcenter;
+            }
+            i {
+                line-height: 0;
+                font-size: 0.6rem;
+                width: 28px;
+                height: 28px;
+                color: $exdkPink;
+                background-color: $dkPink;
+                background-image: linear-gradient(0deg, rgba($ltPink, 0.25), rgba($exltPink, 0.5));
+                box-shadow: 0 0 4px rgba($black, 0.8);
+            }
+            i:before {
+                width: 20px;
+                height: 20px;
+                background-color: $white;
+                background-image: linear-gradient(0deg, rgba($ltPink, 0.25), rgba($exltPink, 0.5));
+                box-shadow: 1px 1px 2px rgba($black, 0.5), -1px -1px 2px rgba($white, 0.25);
+            }
+            &:hover,
+            &:focus {
+                span {
+                    color: $dkPink;
+                    background-size: 0 2px, 100% 2px;
+                }
+            }
         }
     }
-    h3 {
-        padding: 0.5rem 0.5rem 0.5rem 1rem;
+}
+
+.supergallery-closebtn {
+    line-height: 0;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    @include flexcenter;
+    >.wrapper,
+    i {
+        border-radius: 999px;
+        @include flexcenter;
         @include controlscolor;
-        box-shadow: 1px 1px 2px rgba($black, 0.25);
     }
-    .cta {
-        text-transform: uppercase;
-        font-size: 1rem;
-        >a {
-            display: flex;
-            align-items: baseline;
-            gap: 0.25rem;
-            @include controlscolor;
-            padding: 0.25rem 0.25rem 0.25rem 1rem;
-            border-radius: 0 999px 999px 0;
-            box-shadow: 1px 1px 2px rgba($black, 0.25);
-        }
-        i {
-            font-size: 0.8rem;
-            background-color: $white;
-            background-image: linear-gradient(0deg, rgba($ltPink, 1), rgba($exltPink, 1));
-            padding: 0.5rem;
-            border-radius: 999px;
-            box-shadow: 1px 1px 2px rgba($black, 0.5), -1px -1px 2px rgba($white, 0.25);
-            text-shadow: 1px 1px 2px rgba($exdkPink, 1);
-        }
+    >.wrapper {
+        width: 28px;
+        height: 28px;
+    }
+    i {
+        width: 20px;
+        height: 20px;
     }
 }
 
@@ -155,10 +209,6 @@
         left: 0;
         border-radius: 0 999px 999px 0;
         padding: 0.25rem 0.25rem 0.25rem 0.5rem;
-    }
-    &.closebtn {
-        top: 0.5rem;
-        right: 0.5rem;
     }
     >.wrapper {
         @include controlscolor;
